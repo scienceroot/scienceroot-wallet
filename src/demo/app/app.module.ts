@@ -4,12 +4,18 @@ import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
+import {ScrWalletRoutesModule} from "wallet";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     FormsModule,
     BrowserModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([
+      { path: '', pathMatch: 'full', redirectTo: 'wallet/new' }
+    ]),
+    ScrWalletRoutesModule
   ],
   declarations: [
     AppComponent,
@@ -20,6 +26,7 @@ export class AppModule {
 
 
   constructor() {
+
   }
 
 
