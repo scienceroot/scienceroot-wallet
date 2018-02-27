@@ -17,7 +17,6 @@ npm version ${NEXT_VERSION}
 # STEP BUILD
 set -e  # terminates on error
 npm run build
-node publish_index_remove.js  # replace all occurrences of [/index] in 'dist/'
 set +e
 
 # STEP PUBLISH
