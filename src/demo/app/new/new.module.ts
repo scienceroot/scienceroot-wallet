@@ -10,8 +10,12 @@ import {ScrWalletNewModule} from "wallet";
     ]),
     ScrWalletNewModule
   ],
-  declarations: [],
-  exports: [],
+  declarations: [
+    ScrWalletNewDemoComponent
+  ],
+  exports: [
+    RouterModule
+  ],
   providers: []
 })
 export class ScrWalletNewDemoModule {

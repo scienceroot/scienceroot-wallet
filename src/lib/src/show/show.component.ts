@@ -35,6 +35,9 @@ import {interval} from "rxjs/observable/interval";
         </div>
       </ng-container>
       <ng-container *ngIf="!wallet && walletIsStored">
+        <div>
+          <p class="mat-body-1">Please enter the password to decrypt your wallet.</p>
+        </div>
         <div  class="error"
               *ngIf="openError">
           <span class="mat-body-2">{{ openError }}</span>

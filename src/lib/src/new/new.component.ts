@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Web3ProviderService} from "../core/web3-provider.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {SCR_WALLET_STORAGE_KEY} from "../core/wallet.const";
@@ -8,7 +8,6 @@ import {ScrWalletService} from "../core/wallet.service";
   selector: 'scr-wallet-new',
   template: `
     <div>
-      <h1>Create your wallet</h1>
       <div>
         <ng-container *ngIf="!pkFileURI; then create else store;">
         </ng-container>
@@ -16,10 +15,37 @@ import {ScrWalletService} from "../core/wallet.service";
     </div>
     
     <ng-template #create>
+      <h1>Create your wallet</h1>
+      <div  class="info"
+            fxLayout="row"
+            fxLayoutGap="24px">
+        <div  fxFlex="32px"
+              fxFlexAlign="center">
+          <mat-icon>info_outline</mat-icon>
+        </div>
+        <div  fxFlex=""
+              fxFlexAlign="center">
+          <p>
+            We will initially fund your wallet with some coins to play around. It may take a few minutes before the coins appear in your wallet.
+          </p>
+          <p>
+            The coins used in this wallet belong to a private network and have no real value.
+          </p>
+        </div>
+      </div>
       <div class="wallet--form">
-        <span *ngIf="!!passwordError">
-          {{ passwordError }}
-        </span>
+        <p class="mat-body-1">
+          This password encrypts your private key. This does not act as a seed to generate your keys.
+        </p>
+        <p class="mat-body-2">
+          You will need this password + your private key to unlock your wallet.
+        </p>
+        <div>
+          <span *ngIf="!!passwordError"
+                class="error">
+            {{ passwordError }}
+          </span>
+        </div>
         <mat-form-field>
           <input  matInput=""
                   placeholder="Password"
@@ -39,23 +65,44 @@ import {ScrWalletService} from "../core/wallet.service";
     </ng-template>
 
     <ng-template #store>
-      <div class="wallet--store">
-        <a  mat-raised-button=""
-            color="accent"
-            [href]="pkFileURI"
-            download="scr_private_key.json">
-          Speichern
-        </a>
+      <h1>Save your Keystore File</h1>
+      <div>
+        <p class="mat-title">
+          Do not lose it! It cannot be recovered if you lose it.
+        </p>
+        <p class="mat-title">
+          Do not share it!
+        </p>
+      </div>
+      <div  class="wallet--store"
+            fxLayout="row"
+            fxLayoutGap="24px">
+        <div fxFlex="100px">
+          <a  mat-raised-button=""
+              color="accent"
+              [href]="pkFileURI"
+              download="scr_private_key.json">
+            Download
+          </a>
+        </div>
+        <div fxFlex="100px">
+          <button mat-raised-button=""
+                  (click)="onWalletCreationFinished.emit(true)">
+            Continue
+          </button>
+        </div>
       </div>
     </ng-template>
   `,
   styles: [`
-  
+    .error { color: #F44336; }
   `]
 })
 export class ScrWalletNewComponent {
 
   @Input() userId: string;
+
+  @Output() onWalletCreationFinished: EventEmitter<boolean> = new EventEmitter();
 
   public password: string;
   public passwordError: string;

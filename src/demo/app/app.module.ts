@@ -12,6 +12,7 @@ import {
   ScrSecureHttpClientModule
 } from "@scienceroot/security";
 import {ScrWalletDemoModule} from "./wallet/wallet.module";
+import {ScrWalletNewDemoModule} from "./new/new.module";
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {ScrWalletDemoModule} from "./wallet/wallet.module";
     ]),
     ScrAuthenticationModule,
     ScrSecureHttpClientModule,
-    ScrWalletDemoModule
+    ScrWalletDemoModule,
+    ScrWalletNewDemoModule
   ],
   declarations: [
     AppComponent,
