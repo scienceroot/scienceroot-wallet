@@ -4,7 +4,7 @@ import {Web3ProviderService} from "../core/web3-provider.service";
 import {interval} from "rxjs/observable/interval";
 
 @Component({
-  selector: '',
+  selector: 'scr-wallet-show',
   template: `
     <div>
       <ng-container *ngIf="!!wallet">

@@ -35,7 +35,9 @@
     "@angular/flex-layout": "2.0.0-beta.12",
     "@angular/forms": "5.x.x",
     "@angular/http": "5.x.x",
-    "@scienceroot/user": "^1.0.0-beta.3"
+    "@scienceroot/user": "^1.0.0-beta.3",
+    "@scienceroot/security": "1.x.x",
+    "@scienceroot/design": "1.x.x"
   },
   "devDependencies": {
     "@angular/animations": "5.x.x",
@@ -52,6 +54,8 @@
     "@angular/platform-browser-dynamic": "5.x.x",
     "@angular/router": "5.x.x",
     "@scienceroot/user": "1.x.x",
+    "@scienceroot/security": "1.x.x",
+    "@scienceroot/design": "1.x.x",
     "camelcase": "4.1.x",
     "concurrently": "3.5.x",
     "core-js": "2.5.x",

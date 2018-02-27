@@ -1,10 +1,11 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {Web3ProviderService} from "../core/web3-provider.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {SCR_WALLET_STORAGE_KEY} from "../core/wallet.const";
+import {ScrWalletService} from "../core/wallet.service";
 
 @Component({
-  selector: '',
+  selector: 'scr-wallet-new',
   template: `
     <div>
       <h1>Create your wallet</h1>
@@ -54,6 +55,8 @@ import {SCR_WALLET_STORAGE_KEY} from "../core/wallet.const";
 })
 export class ScrWalletNewComponent {
 
+  @Input() userId: string;
+
   public password: string;
   public passwordError: string;
   public pkFileURI: SafeUrl;
@@ -64,7 +67,8 @@ export class ScrWalletNewComponent {
 
   constructor(
     private web3Provider: Web3ProviderService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private walletService: ScrWalletService
   ) {
     this._web3 = this.web3Provider.get();
   }
@@ -74,11 +78,13 @@ export class ScrWalletNewComponent {
       let wallet = this._web3.eth.accounts.wallet.create(1);
       let encryptedWallet = wallet.encrypt(this.password);
 
-
       this._pkFile = encodeURIComponent(JSON.stringify(encryptedWallet));
       this.pkFileURI = this.sanitizer.bypassSecurityTrustUrl(this._pkFilePrefix + this._pkFile);
 
       wallet.save(this.password, SCR_WALLET_STORAGE_KEY);
+
+      this.walletService.setPublicAddress(this.userId, wallet[0].address)
+        .then((res: any) => console.log(res));
     }
 
   }
