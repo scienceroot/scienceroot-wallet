@@ -66,8 +66,8 @@ export class ScrWalletTransactionComponent implements OnInit {
 
   @Output() onTransactionSuccess: EventEmitter<any> = new EventEmitter();
 
-  public targetAddress: string = '0x9036A1259C54C6eD5F32b5Ca56dbC6F373f4c8D0';
-  public amount: string = '10';
+  public targetAddress: string;
+  public amount: string;
 
   public loading: boolean = false;
   public errorMessage: string;

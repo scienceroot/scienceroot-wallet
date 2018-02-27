@@ -85,9 +85,7 @@ export class ScrWalletShowComponent {
     this._web3 = this.web3Provider.get();
 
     this.walletIsStored = !!localStorage.getItem(SCR_WALLET_STORAGE_KEY);
-
-    this.wallet = this._web3.eth.accounts.wallet.load('huehuehue', SCR_WALLET_STORAGE_KEY);
-    this.getWalletBalance();
+    
     const checkInterval = interval(10000);
     checkInterval.subscribe(() => this.getWalletBalance());
   }
