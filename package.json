@@ -1,6 +1,6 @@
 {
   "name": "@scienceroot/wallet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "./wallet.umd.js",
   "module": "./wallet.es5.js",
