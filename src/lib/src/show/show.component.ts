@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {SCR_WALLET_STORAGE_KEY} from "../core/wallet.const";
 import {Web3ProviderService} from "../core/web3-provider.service";
+import {FileChangeEvent} from "@angular/compiler-cli/src/perform_watch";
 
 @Component({
   selector: '',
@@ -51,9 +52,13 @@ import {Web3ProviderService} from "../core/web3-provider.service";
         </div>
       </ng-container>
       <ng-container *ngIf="!wallet && !walletIsStored">
+        <span class="mat-body-1">
+          Input your keystore file.
+        </span>
         <div>
           <input  type="file"
-                  placeholder="Keystorefile">
+                  placeholder="Keystorefile"
+                  (change)="keystoreFileChange($event)">
         </div>
       </ng-container>
     </div>
@@ -79,16 +84,26 @@ export class ScrWalletShowComponent {
     this._web3 = this.web3Provider.get();
 
     this.walletIsStored = !!localStorage.getItem(SCR_WALLET_STORAGE_KEY);
-
-    this.wallet = this._web3.eth.accounts.wallet.load('huehuehue', SCR_WALLET_STORAGE_KEY);
-    this.getWalletBalance();
-    console.log(this.wallet)
   }
 
   public decryptWallet() {
     this.wallet = this._web3.eth.accounts.wallet.load(this.password, SCR_WALLET_STORAGE_KEY);
     this.getWalletBalance();
     console.log(this.wallet)
+  }
+
+  public keystoreFileChange(event: any) {
+    let file = event.target.files[0];
+    let fileReader = new FileReader();
+
+    fileReader.onload = (e: any) => {
+      if(!!e.target.result) {
+        localStorage.setItem(SCR_WALLET_STORAGE_KEY, e.target.result);
+        this.walletIsStored = true;
+      }
+    };
+
+    fileReader.readAsText(file);
   }
 
   private getWalletBalance() {
