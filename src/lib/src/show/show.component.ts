@@ -35,6 +35,10 @@ import {interval} from "rxjs/observable/interval";
         </div>
       </ng-container>
       <ng-container *ngIf="!wallet && walletIsStored">
+        <div  class="error"
+              *ngIf="openError">
+          <span class="mat-body-2">{{ openError }}</span>
+        </div>
         <div>
           <mat-form-field>
             <input  matInput=""
@@ -69,10 +73,12 @@ import {interval} from "rxjs/observable/interval";
     </div>
   `,
   styles: [`
-  
+    .error { color: #F44336; }
   `]
 })
 export class ScrWalletShowComponent {
+
+  public openError: string = null;
 
   public walletIsStored: boolean;
   public password: string;
@@ -89,9 +95,14 @@ export class ScrWalletShowComponent {
   }
 
   public decryptWallet() {
-    this.wallet = this._web3.eth.accounts.wallet.load(this.password, SCR_WALLET_STORAGE_KEY);
+    try {
+      this.wallet = this._web3.eth.accounts.wallet.load(this.password, SCR_WALLET_STORAGE_KEY);
+    } catch(error) {
+      this.openError = error.message;
+      console.error(error.message);
+    }
 
-    this.getWalletBalance()
+    this.getWalletBalance();
     const checkInterval = interval(10000);
     checkInterval.subscribe(() => this.getWalletBalance());
   }
