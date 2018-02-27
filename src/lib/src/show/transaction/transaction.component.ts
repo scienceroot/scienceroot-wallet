@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Web3ProviderService} from "../../core/web3-provider.service";
 import {MatSnackBar} from "@angular/material";
 
@@ -63,6 +63,8 @@ import {MatSnackBar} from "@angular/material";
 export class ScrWalletTransactionComponent implements OnInit {
 
   @Input() wallet: any;
+
+  @Output() onTransactionSuccess: EventEmitter<any> = new EventEmitter();
 
   public targetAddress: string = '0x9036A1259C54C6eD5F32b5Ca56dbC6F373f4c8D0';
   public amount: string = '10';
@@ -152,5 +154,7 @@ export class ScrWalletTransactionComponent implements OnInit {
     this.snackBar.open('Transaction completed', 'Close',{
       duration: 3000,
     });
+
+    this.onTransactionSuccess.emit(true);
   }
 }

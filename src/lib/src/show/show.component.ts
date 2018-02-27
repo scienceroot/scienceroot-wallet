@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {SCR_WALLET_STORAGE_KEY} from "../core/wallet.const";
 import {Web3ProviderService} from "../core/web3-provider.service";
-import {FileChangeEvent} from "@angular/compiler-cli/src/perform_watch";
+import {interval} from "rxjs/observable/interval";
 
 @Component({
   selector: '',
@@ -63,7 +63,8 @@ import {FileChangeEvent} from "@angular/compiler-cli/src/perform_watch";
       </ng-container>
     </div>
     <div *ngIf="!!wallet">
-      <scr-wallet-transaction [wallet]="wallet">
+      <scr-wallet-transaction [wallet]="wallet"
+                              (onTransactionSuccess)="getWalletBalance()">
       </scr-wallet-transaction>
     </div>
   `,
@@ -87,6 +88,8 @@ export class ScrWalletShowComponent {
 
     this.wallet = this._web3.eth.accounts.wallet.load('huehuehue', SCR_WALLET_STORAGE_KEY);
     this.getWalletBalance();
+    const checkInterval = interval(10000);
+    checkInterval.subscribe(() => this.getWalletBalance());
   }
 
   public decryptWallet() {
@@ -108,7 +111,7 @@ export class ScrWalletShowComponent {
     fileReader.readAsText(file);
   }
 
-  private getWalletBalance() {
+  public getWalletBalance() {
     this.balance = this._web3.eth.getBalance(this.wallet[0].address);
   }
 }
