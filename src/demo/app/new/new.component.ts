@@ -16,7 +16,8 @@ import {Router} from "@angular/router";
 })
 export class ScrWalletNewDemoComponent {
 
-  public userId: string = '3fed1db8-f2b7-4d01-aa67-ab8ce409ad91';
+
+  public userId: string = '4f61f582-559a-4988-9d59-cdcb7b659a22';
 
   constructor(private router: Router) {
   }

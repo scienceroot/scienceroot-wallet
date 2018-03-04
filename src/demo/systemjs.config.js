@@ -73,7 +73,9 @@
       'web3-utils': 'npm:web3-utils/src/index.js',
       'tslib': 'npm:tslib/tslib.js',
 
-      '@scienceroot/user': 'npm:@scienceroot/user/bundles/user.umd.min.js',
+      '@bindoc/loading': 'npm:@bindoc/loading/bundles/loading.umd.min.js',
+
+      '@scienceroot/design': 'npm:@scienceroot/design/bundles/design.umd.min.js',
       '@scienceroot/security': 'npm:@scienceroot/security/bundles/security.umd.min.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension

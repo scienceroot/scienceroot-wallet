@@ -1,12 +1,8 @@
-import {ScrUser} from '@scienceroot/user'
-
 export class ScrWallet {
 
   private _web3: any;
 
-  constructor(
-    public owner: ScrUser
-  ) {
+  constructor() {
 
     if(!this.connected()) {
       throw new Error('Wallet could not connect to node.')

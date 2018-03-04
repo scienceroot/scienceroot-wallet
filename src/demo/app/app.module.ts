@@ -6,7 +6,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {ScrWalletStoreConfig} from "wallet";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ScrUserStoreConfigModel} from "@scienceroot/user";
 import {
   ScrAuthenticationLoginComponent, ScrAuthenticationModule, ScrAuthenticationStoreConfig,
   ScrSecureHttpClientModule
@@ -35,8 +34,8 @@ import {ScrWalletNewDemoModule} from "./new/new.module";
 })
 export class AppModule {
 
-  //private host: string = 'https://api.scienceroots.com';
-  private host: string = 'http://localhost:8080';
+  private host: string = 'https://api.scienceroots.com';
+  //private host: string = 'http://localhost:8080';
 
   constructor() {
     new ScrAuthenticationStoreConfig(
@@ -44,13 +43,6 @@ export class AppModule {
       `${this.host}/register`,
       `${this.host}/login`,
       `${this.host}/token`,
-    ).save();
-
-    new ScrUserStoreConfigModel(
-      `${this.host}/users`,
-      `${this.host}/register`,
-      `${this.host}/industries/`,
-      `${this.host}/interests/`
     ).save();
 
     new ScrWalletStoreConfig(
