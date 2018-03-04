@@ -1,35 +1,25 @@
-export class ScrWallet {
+import {Web3ProviderService} from "./web3-provider.service";
 
-  private _web3: any;
+export class ScrWeb3Container {
+  protected _web3: any;
 
-  constructor() {
+  constructor(
+    private _web3Provider: Web3ProviderService
+  ) {
+    this._web3 = this._web3Provider.get();
+  }
+}
 
-    if(!this.connected()) {
-      throw new Error('Wallet could not connect to node.')
-    }
+export class ScrWallet extends ScrWeb3Container{
 
-    this._web3.eth.getBalance(this._web3.eth.coinbase, (error: any, result: any) => {
-      if(!!error) {
-        console.error(error);
-      } else {
-        console.log(result.toNumber())
-      }
-    })
+  constructor(
+    public publicAddress: string,
+    _web3Provider: Web3ProviderService
+  ) {
+    super(_web3Provider);
   }
 
-  public getAccounts(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this._web3.eth.getAccounts((error: any, result: any) => {
-        if(!!error) {
-          reject(new Error('Error on getAccounts.'));
-        } else {
-          resolve(result);
-        }
-      });
-    })
-  }
-
-  private connected(): boolean {
-    return this._web3.isConnected();
+  public getBalance(): Promise<number> {
+    return this._web3.eth.getBalance(this.publicAddress);
   }
 }

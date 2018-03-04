@@ -12,7 +12,6 @@ export class Web3ProviderService {
   }
 
   public get(): any {
-    console.log(this._web3)
     return this._web3;
   }
 }

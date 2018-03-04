@@ -4,7 +4,7 @@ import {Component} from "@angular/core";
   selector: '',
   template: `
     <div>
-      <scr-wallet-show>
+      <scr-wallet-show [publicAddress]="publicAddress">
       </scr-wallet-show>
     </div>
   `,
@@ -14,5 +14,5 @@ import {Component} from "@angular/core";
 })
 export class ScrWalletDemoComponent {
 
-  public userId: string = '3fed1db8-f2b7-4d01-aa67-ab8ce409ad91';
+  public publicAddress: string = '0x6c5893B4e19e837022437071D09d92BEd58A8A07';
 }

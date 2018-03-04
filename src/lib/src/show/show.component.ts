@@ -1,39 +1,15 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {SCR_WALLET_STORAGE_KEY} from "../core/wallet.const";
 import {Web3ProviderService} from "../core/web3-provider.service";
 import {interval} from "rxjs/observable/interval";
+import {ScrWeb3Container} from "../core/wallet.model";
 
 @Component({
   selector: 'scr-wallet-show',
   template: `
     <div>
-      <ng-container *ngIf="!!wallet">
-        <div>
-          <span class="mat-headline">Your wallet</span>
-          <div  fxLayout="row"
-                fxLayoutGap="24px">
-            <span fxFlex="130px"
-                  class="mat-subheading">
-              Public address
-            </span>
-            <span fxFlex=""
-                  class="mat-title">
-              {{ wallet[0].address }}
-            </span>
-          </div>
-          <div fxLayout="row"
-               fxLayoutGap="24px">
-            <span fxFlex="130px"
-                  class="mat-subheading">
-              Current balance
-            </span>
-            <span fxFlex=""
-                  class="mat-title">
-              {{ balance | async | number:'1.0-10' }} WEI
-            </span>
-          </div>
-        </div>
-      </ng-container>
+      <scr-wallet-show-balance [publicAddress]="publicAddress">
+      </scr-wallet-show-balance>
       <ng-container *ngIf="!wallet && walletIsStored">
         <div>
           <p class="mat-body-1">Please enter the password to decrypt your wallet.</p>
@@ -79,22 +55,20 @@ import {interval} from "rxjs/observable/interval";
     .error { color: #F44336; }
   `]
 })
-export class ScrWalletShowComponent {
+export class ScrWalletShowComponent extends ScrWeb3Container {
+
+  @Input() publicAddress: string;
 
   public openError: string = null;
 
   public walletIsStored: boolean;
   public password: string;
   public wallet: any;
-  public balance: Promise<any>;
-
-  private _web3: any;
 
   constructor(private web3Provider: Web3ProviderService) {
-    this._web3 = this.web3Provider.get();
+    super(web3Provider);
 
     this.walletIsStored = !!localStorage.getItem(SCR_WALLET_STORAGE_KEY);
-
   }
 
   public decryptWallet() {
@@ -104,10 +78,6 @@ export class ScrWalletShowComponent {
       this.openError = error.message;
       console.error(error.message);
     }
-
-    this.getWalletBalance();
-    const checkInterval = interval(10000);
-    checkInterval.subscribe(() => this.getWalletBalance());
   }
 
   public keystoreFileChange(event: any) {
@@ -122,9 +92,5 @@ export class ScrWalletShowComponent {
     };
 
     fileReader.readAsText(file);
-  }
-
-  public getWalletBalance() {
-    this.balance = this._web3.eth.getBalance(this.wallet[0].address);
   }
 }
