@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {SCR_WALLET_STORAGE_KEY} from "../../core/wallet.const";
 import {Web3ProviderService} from "../../core/web3-provider.service";
 import {ScrWalletService} from "../../core/wallet.service";
+import {ScrWeb3Container} from "../../core/wallet.model";
 
 @Component({
   selector: 'scr-wallet-new-create',
@@ -58,19 +59,17 @@ import {ScrWalletService} from "../../core/wallet.service";
     .error { color: #F44336; }
   `]
 })
-export class ScrWalletNewCreateComponent {
+export class ScrWalletNewCreateComponent extends ScrWeb3Container {
 
   @Output() onWalletCreate: EventEmitter<any> = new EventEmitter();
 
   public passwordError: string;
   public password: string;
 
-  private _web3: any;
-
   constructor(
-    private web3Provider: Web3ProviderService
+    web3Provider: Web3ProviderService
   ) {
-    this._web3 = this.web3Provider.get();
+    super(web3Provider);
   }
 
   public createWallet() {
