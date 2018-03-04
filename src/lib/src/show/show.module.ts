@@ -4,9 +4,9 @@ import {CommonModule} from "@angular/common";
 import {MatButtonModule, MatInputModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {ScrWalletTransactionModule} from "./transaction/transaction.module";
 import {ScrWalletCoreModule} from "../core/core.module";
 import {ScrWalletShowBalanceModule} from "./balance/balance.module";
+import {ScrWalletPrivateModule} from "./private/private.module";
 
 export * from './show.component';
 
@@ -19,7 +19,7 @@ export * from './show.component';
     MatButtonModule,
     ScrWalletCoreModule,
     ScrWalletShowBalanceModule,
-    ScrWalletTransactionModule
+    ScrWalletPrivateModule
   ],
   declarations: [
     ScrWalletShowComponent

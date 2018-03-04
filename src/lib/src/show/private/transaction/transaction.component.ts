@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {Web3ProviderService} from "../../core/web3-provider.service";
 import {MatSnackBar} from "@angular/material";
+import {Web3ProviderService} from "../../../core/web3-provider.service";
+import {ScrWeb3Container} from "../../../core/wallet.model";
 
 @Component({
-  selector: 'scr-wallet-transaction',
+  selector: 'scr-wallet-private-transaction',
   template: `
     <div *ngIf="loading">
       <div  fxLayout="row"
@@ -60,7 +61,7 @@ import {MatSnackBar} from "@angular/material";
     .error { color: #F44336; }
   `]
 })
-export class ScrWalletTransactionComponent implements OnInit {
+export class ScrWalletTransactionComponent extends ScrWeb3Container implements OnInit {
 
   @Input() wallet: any;
 
@@ -72,13 +73,11 @@ export class ScrWalletTransactionComponent implements OnInit {
   public loading: boolean = false;
   public errorMessage: string;
 
-  private _web3: any;
-
   constructor(
-    private web3Provider: Web3ProviderService,
+    web3Provider: Web3ProviderService,
     public snackBar: MatSnackBar
   ) {
-    this._web3 = this.web3Provider.get();
+    super(web3Provider);
   }
 
   ngOnInit(): void {

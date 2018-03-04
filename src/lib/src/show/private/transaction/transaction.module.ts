@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {MatButtonModule, MatInputModule, MatProgressSpinnerModule, MatSnackBarModule} from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FormsModule} from "@angular/forms";
+import {ScrWalletCoreModule} from "../../../core/core.module";
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import {FormsModule} from "@angular/forms";
     MatInputModule,
     MatProgressSpinnerModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ScrWalletCoreModule
   ],
   declarations: [
     ScrWalletTransactionComponent

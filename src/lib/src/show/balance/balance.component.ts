@@ -9,7 +9,6 @@ import {Subscription} from "rxjs/Subscription";
   selector: 'scr-wallet-show-balance',
   template: `
     <div>
-      <span class="mat-headline">Your wallet</span>
       <div  fxLayout="row"
             fxLayoutGap="24px">
             <span fxFlex="130px"
