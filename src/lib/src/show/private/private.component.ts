@@ -1,4 +1,5 @@
 import {Component, Input} from "@angular/core";
+import {ScrWallet} from '../../..';
 import {SCR_WALLET_STORAGE_KEY} from "../../core/wallet.const";
 
 @Component({
@@ -28,8 +29,7 @@ import {SCR_WALLET_STORAGE_KEY} from "../../core/wallet.const";
           </div>
         </div>
         <div *ngIf="!!wallet">
-          <scr-wallet-private-transaction [wallet]="wallet"
-                                          (onTransactionSuccess)="getWalletBalance()">
+          <scr-wallet-private-transaction [wallet]="wallet">
           </scr-wallet-private-transaction>
         </div>
       </div>
@@ -43,10 +43,10 @@ import {SCR_WALLET_STORAGE_KEY} from "../../core/wallet.const";
 })
 export class ScrWalletPrivateComponent {
 
-  @Input() publicAddress: string;
+  @Input() address: string;
 
   public walletIsStored: boolean;
-  public wallet: any;
+  public wallet: ScrWallet;
 
   constructor() {
     this.walletIsStored = !!localStorage.getItem(SCR_WALLET_STORAGE_KEY);

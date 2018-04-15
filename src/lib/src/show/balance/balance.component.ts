@@ -1,6 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from "@angular/core";
-import {Web3ProviderService} from "../../core/web3-provider.service";
-import {ScrWallet, ScrWeb3Container} from "../../core/wallet.model";
+import {ScrWavesApiService} from '../../core/waves-provider.service';
 import {interval} from "rxjs/observable/interval";
 import {startWith} from "rxjs/operators";
 import {Subscription} from "rxjs/Subscription";
@@ -9,26 +8,27 @@ import {Subscription} from "rxjs/Subscription";
   selector: 'scr-wallet-show-balance',
   template: `
     <div>
-      <div  fxLayout="row"
-            fxLayoutGap="24px">
+      <span class="mat-title">Your wallet</span>
+      <div fxLayout="row"
+           fxLayoutGap="24px">
             <span fxFlex="130px"
-                  class="mat-subheading">
-              Public address
+                  class="mat-caption">
+              Address
             </span>
         <span fxFlex=""
-              class="mat-title">
-              {{ publicAddress }}
+              class="mat-subheading-2">
+              {{ address }}
             </span>
       </div>
       <div fxLayout="row"
            fxLayoutGap="24px">
             <span fxFlex="130px"
-                  class="mat-subheading">
+                  class="mat-caption">
               Current balance
             </span>
         <span fxFlex=""
-              class="mat-title">
-              {{ balance | async | number:'1.0-10' }} WEI
+              class="mat-subheading-2">
+              {{ balance | async | number:'1.0-10' }} Waves
             </span>
       </div>
     </div>
@@ -37,29 +37,32 @@ import {Subscription} from "rxjs/Subscription";
   
   `]
 })
-export class ScrWalletShowBalanceComponent extends ScrWeb3Container implements OnInit, OnDestroy {
+export class ScrWalletShowBalanceComponent implements OnInit, OnDestroy {
 
-  @Input() publicAddress: string;
+  @Input() address: string;
 
   public balance: Promise<number>;
 
-  private _wallet: ScrWallet;
   private _checkSub: Subscription;
+  private _wavesApi: any;
 
-  constructor(private web3Provider: Web3ProviderService) {
-    super(web3Provider);
+  constructor(private _wavesProvider: ScrWavesApiService) {
+    this._wavesApi = this._wavesProvider.wavesApi;
   }
 
   ngOnInit(): void {
-    this._wallet = new ScrWallet(this.publicAddress, this.web3Provider);
-
     const checkInterval = interval(10000);
     this._checkSub = checkInterval.pipe(startWith(0))
-      .subscribe(() => this.balance = this._wallet.getBalance());
+      .subscribe(() => this._getBalance());
 
   }
 
   ngOnDestroy(): void {
     this._checkSub.unsubscribe();
+  }
+
+  private _getBalance() {
+    this.balance = this._wavesApi.API.Node.v1.addresses.balance(this.address)
+      .then((res: any) => res.balance);
   }
 }

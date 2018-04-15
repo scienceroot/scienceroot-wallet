@@ -1,4 +1,5 @@
 import {NgModule} from "@angular/core";
+import {ScrLoadingModule} from '@scienceroot/design';
 import {ScrWalletTransactionComponent} from "./transaction.component";
 import {CommonModule} from "@angular/common";
 import {MatButtonModule, MatInputModule, MatProgressSpinnerModule, MatSnackBarModule} from "@angular/material";
@@ -15,6 +16,7 @@ import {ScrWalletCoreModule} from "../../../core/core.module";
     MatProgressSpinnerModule,
     MatButtonModule,
     MatSnackBarModule,
+    ScrLoadingModule,
     ScrWalletCoreModule
   ],
   declarations: [

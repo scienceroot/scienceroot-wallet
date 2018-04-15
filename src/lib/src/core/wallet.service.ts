@@ -8,9 +8,9 @@ export class ScrWalletService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public setPublicAddress(userId: string, publicAddress: string): Promise<any> {
+  public setPublicAddress(userId: string, publicKey: string): Promise<any> {
     let url = ScrWalletStore.publicAddressByUserId(userId);
 
-    return this.httpClient.post(url, publicAddress).toPromise();
+    return this.httpClient.post(url, publicKey).toPromise();
   }
 }

@@ -2,7 +2,7 @@ export class ScrWalletStoreConfig {
 
   public static readonly storageKeys: any = {
     base: 'scr.wallet.base',
-    publicAddress: 'scr.wallet.publicAddress',
+    publicAddress: 'scr.wallet.publicKey',
   };
 
   public static fetch(): ScrWalletStoreConfig {

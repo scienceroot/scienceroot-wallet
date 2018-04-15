@@ -1,25 +1,41 @@
-import {Web3ProviderService} from "./web3-provider.service";
+import {SCR_WALLET_STORAGE_KEY} from './wallet.const';
 
-export class ScrWeb3Container {
-  protected _web3: any;
+export class ScrWallet {
 
-  constructor(
-    private _web3Provider: Web3ProviderService
-  ) {
-    this._web3 = this._web3Provider.get();
-  }
-}
-
-export class ScrWallet extends ScrWeb3Container{
+  private readonly _encrypted: any;
+  private readonly _address: string;
 
   constructor(
-    public publicAddress: string,
-    _web3Provider: Web3ProviderService
+    private _seed: any,
+    private _password: string
   ) {
-    super(_web3Provider);
+    this._encrypted = this._seed.encrypt(this._password);
+    this._address = this._seed.address;
+    this._store();
   }
 
-  public getBalance(): Promise<number> {
-    return this._web3.eth.getBalance(this.publicAddress);
+  public getPublicKey(): string {
+    return this._seed.keyPair.publicKey;
+  }
+
+  get seed(): any {
+    return this._seed;
+  }
+
+  get address(): string {
+    return this._address;
+  }
+
+  get encrypted(): any {
+    return this._encrypted;
+  }
+
+  private _store() {
+    let toStore = JSON.stringify({
+      publicKey: this._seed.keyPair.publicKey,
+      encrypted: this._encrypted
+    });
+
+    localStorage.setItem(SCR_WALLET_STORAGE_KEY, toStore);
   }
 }

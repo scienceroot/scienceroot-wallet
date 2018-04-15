@@ -7,6 +7,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {ScrWalletCoreModule} from "../core/core.module";
 import {ScrWalletShowBalanceModule} from "./balance/balance.module";
 import {ScrWalletPrivateModule} from "./private/private.module";
+import {ScrWalletShowTransactionsModule} from './transactions/transactions.module';
 
 export * from './show.component';
 
@@ -19,6 +20,7 @@ export * from './show.component';
     MatButtonModule,
     ScrWalletCoreModule,
     ScrWalletShowBalanceModule,
+    ScrWalletShowTransactionsModule,
     ScrWalletPrivateModule
   ],
   declarations: [

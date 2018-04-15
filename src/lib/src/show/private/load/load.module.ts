@@ -1,8 +1,14 @@
 import {NgModule} from "@angular/core";
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatButtonModule, MatDivider, MatDividerModule} from '@angular/material';
 import {ScrWalletPrivateLoadComponent} from "./load.component";
 
 @NgModule({
-  imports: [],
+  imports: [
+    FlexLayoutModule,
+    MatDividerModule,
+    MatButtonModule
+  ],
   declarations: [
     ScrWalletPrivateLoadComponent
   ],

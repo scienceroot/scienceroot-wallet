@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {SCR_WALLET_STORAGE_KEY} from "../../core/wallet.const";
-import {Web3ProviderService} from "../../core/web3-provider.service";
-import {ScrWalletService} from "../../core/wallet.service";
-import {ScrWeb3Container} from "../../core/wallet.model";
+import {Component, EventEmitter, Output} from "@angular/core";
+import {IHash, IKeyPair} from 'waves-api/interfaces';
+import {IWavesAPI} from 'waves-api'
+import {ScrWallet} from '../../..';
+import {ScrWavesApiService} from '../../core/waves-provider.service';
 
 @Component({
   selector: 'scr-wallet-new-create',
@@ -25,12 +25,12 @@ import {ScrWeb3Container} from "../../core/wallet.model";
         </p>
       </div>
     </div>
+    <div class="seed">
+      
+    </div>
     <div class="wallet--form">
       <p class="mat-body-1">
-        This password encrypts your private key. This does not act as a seed to generate your keys.
-      </p>
-      <p class="mat-body-2">
-        You will need this password + your private key to unlock your wallet.
+        This password encrypts your wallets data.
       </p>
       <div>
           <span *ngIf="!!passwordError"
@@ -59,32 +59,34 @@ import {ScrWeb3Container} from "../../core/wallet.model";
     .error { color: #F44336; }
   `]
 })
-export class ScrWalletNewCreateComponent extends ScrWeb3Container {
+export class ScrWalletNewCreateComponent {
 
   @Output() onWalletCreate: EventEmitter<any> = new EventEmitter();
 
   public passwordError: string;
-  public password: string;
+  public password: string = 'secret';
+
+  private _wallet: ScrWallet;
+  private _wavesApi: IWavesAPI;
 
   constructor(
-    web3Provider: Web3ProviderService
+    private _wavesProvider: ScrWavesApiService
   ) {
-    super(web3Provider);
+    this._wavesApi = this._wavesProvider.wavesApi;
   }
 
   public createWallet() {
-    if(this.passwordValid()) {
-      let wallet = this._web3.eth.accounts.wallet.create(1);
-      let encryptedWallet = wallet.encrypt(this.password);
+    if(this._passwordValid()) {
+      const seed = this._wavesApi.Seed.create();
 
-      wallet.save(this.password, SCR_WALLET_STORAGE_KEY);
+      this._wallet = new ScrWallet(seed, this.password);
 
-      this.onWalletCreate.emit(encryptedWallet);
+      this.onWalletCreate.emit(this._wallet);
     }
 
   }
 
-  private passwordValid(): boolean {
+  private _passwordValid(): boolean {
     let valid: boolean;
 
     if(!this.password) {

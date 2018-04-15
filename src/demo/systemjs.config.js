@@ -71,6 +71,7 @@
       'web3-bzz': 'npm:web3-bzz/src/index.js',
       'web3-net': 'npm:web3-net/src/index.js',
       'web3-utils': 'npm:web3-utils/src/index.js',
+      'waves-api': 'npm:waves-api/dist/waves-api.js',
       'tslib': 'npm:tslib/tslib.js',
 
       '@bindoc/loading': 'npm:@bindoc/loading/bundles/loading.umd.min.js',

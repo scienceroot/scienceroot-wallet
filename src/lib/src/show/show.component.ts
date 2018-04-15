@@ -1,18 +1,19 @@
 import {Component, Input} from "@angular/core";
-import {Web3ProviderService} from "../core/web3-provider.service";
-import {ScrWeb3Container} from "../core/wallet.model";
 
 @Component({
   selector: 'scr-wallet-show',
   template: `
     <div>
-      <span class="mat-headline">Your wallet</span>
       <div class="section">
-        <scr-wallet-show-balance [publicAddress]="publicAddress">
+        <scr-wallet-show-balance [address]="address">
         </scr-wallet-show-balance>
       </div>
       <div class="section">
-        <scr-wallet-private [publicAddress]="publicAddress">
+        <scr-wallet-transactions [address]="address">
+        </scr-wallet-transactions>
+      </div>
+      <div class="section">
+        <scr-wallet-private [address]="address">
         </scr-wallet-private>
       </div>
     </div>
@@ -21,12 +22,12 @@ import {ScrWeb3Container} from "../core/wallet.model";
     .section { padding: 24px; }
   `]
 })
-export class ScrWalletShowComponent extends ScrWeb3Container {
+export class ScrWalletShowComponent {
 
-  @Input() publicAddress: string;
+  @Input() address: string;
 
-  constructor(private web3Provider: Web3ProviderService) {
-    super(web3Provider);
+  constructor() {
+
   }
 
 

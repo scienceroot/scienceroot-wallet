@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {ScrWallet} from '../..';
 import {ScrWalletService} from "../core/wallet.service";
 
 @Component({
@@ -51,16 +52,18 @@ export class ScrWalletNewComponent {
 
   public walletReq: Promise<any> = null;
   public walletSaved: boolean;
-  public wallet: any;
+  public wallet: ScrWallet;
 
-  constructor(private walletService: ScrWalletService) {
+  constructor(
+    private _walletService: ScrWalletService
+  ) {
 
   }
 
   public onWalletCreate(newWallet: any) {
     this.wallet = newWallet;
 
-    this.walletReq = this.walletService.setPublicAddress(this.userId, this.wallet[0].address);
+    this.walletReq = this._walletService.setPublicAddress(this.userId, this.wallet.getPublicKey());
     this.walletReq
       .then(() => this.walletSaved = true)
       .catch(() => this.walletSaved = false);

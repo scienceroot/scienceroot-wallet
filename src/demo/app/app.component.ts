@@ -9,6 +9,9 @@ import { Component } from '@angular/core';
         <li>
           <a [routerLink]="['']">Home</a>
         </li>
+        <li>
+          <a [routerLink]="['new']">Create</a>
+        </li>
       </ul>
 
     </div>
