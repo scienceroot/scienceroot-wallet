@@ -63,7 +63,7 @@ export class ScrWalletNewCreateComponent {
   @Output() onWalletCreate: EventEmitter<any> = new EventEmitter();
 
   public passwordError: string;
-  public password: string = 'secret';
+  public password: string;
 
   private _wallet: ScrWallet;
   private _wavesApi: IWavesAPI;
