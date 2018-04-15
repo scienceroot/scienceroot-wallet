@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {create} from '@waves/waves-api'
-import {SCR_WAVES_CONFIG} from '../../index';
+import {SCR_WAVES_CONFIG} from './wallet.const';
 
 @Injectable()
 export class ScrWavesApiService {
