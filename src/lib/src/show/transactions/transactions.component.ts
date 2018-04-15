@@ -3,7 +3,7 @@ import {interval} from 'rxjs/observable/interval';
 import {startWith} from 'rxjs/operators';
 import {Subscription} from 'rxjs/Subscription';
 import {IWavesAPI} from 'waves-api';
-import {ScrWavesApiService} from '../../..';
+import {ScrWavesApiService} from '../../core/core.module';
 
 @Component({
   selector: 'scr-wallet-transactions',

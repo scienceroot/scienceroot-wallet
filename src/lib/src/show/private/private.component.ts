@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {ScrWallet} from '../../..';
+import {ScrWallet} from '../../core/wallet.model';
 import {SCR_WALLET_STORAGE_KEY} from "../../core/wallet.const";
 
 @Component({

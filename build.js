@@ -39,24 +39,7 @@ _relativeCopy(`**/*`, srcFolder, tempLibFolder)
   const es5Entry = path.join(es5OutputFolder, `${libName}.js`);
 const es2015Entry = path.join(es2015OutputFolder, `${libName}.js`);
 const rollupBaseConfig = {
-  name: camelCase(libName),
-  sourcemap: true,
-  // ATTENTION:
-  // Add any dependency or peer dependency your library to `globals` and `external`.
-  // This is required for UMD bundle users.
-  globals: {
-    // The key here is library name, and the value is the the name of the global variable name
-    // the window object.
-    // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals for more.
-    '@angular/core': 'ng.core'
-  },
-  external: [
-    // List of dependencies
-    // See https://github.com/rollup/rollup/wiki/JavaScript-API#external for more.
-    '@angular/core',
-    '@angular/http',
-    '@angular/platform-browser/animations'
-  ],
+  external: [],
   plugins: [
     sourcemaps()
   ]
@@ -67,6 +50,10 @@ const umdConfig = Object.assign({}, rollupBaseConfig, {
   input: es5Entry,
   output: {
     name: camelCase(libName),
+    sourcemap: true,
+    globals: {
+      '@angular/core': 'ng.core'
+    },
     file: path.join(distFolder, `bundles`, `${libName}.umd.js`),
     format: 'umd'
   }
@@ -77,6 +64,10 @@ const minifiedUmdConfig = Object.assign({}, rollupBaseConfig, {
   input: es5Entry,
   output: {
     name: camelCase(libName),
+    sourcemap: true,
+    globals: {
+      '@angular/core': 'ng.core'
+    },
     file: path.join(distFolder, `bundles`, `${libName}.umd.min.js`),
     format: 'umd'
   },
@@ -87,6 +78,11 @@ const minifiedUmdConfig = Object.assign({}, rollupBaseConfig, {
 const fesm5config = Object.assign({}, rollupBaseConfig, {
   input: es5Entry,
   output: {
+    name: camelCase(libName),
+    sourcemap: true,
+    globals: {
+      '@angular/core': 'ng.core'
+    },
     file: path.join(distFolder, `${libName}.es5.js`),
     format: 'es'
   }
@@ -96,6 +92,11 @@ const fesm5config = Object.assign({}, rollupBaseConfig, {
 const fesm2015config = Object.assign({}, rollupBaseConfig, {
   input: es2015Entry,
   output: {
+    name: camelCase(libName),
+    sourcemap: true,
+    globals: {
+      '@angular/core': 'ng.core'
+    },
     file: path.join(distFolder, `${libName}.js`),
     format: 'es'
   }
