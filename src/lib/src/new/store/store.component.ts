@@ -93,7 +93,6 @@ export class ScrWalletNewStoreComponent implements OnChanges {
 
   private onWalletChange(change: SimpleChange) {
     if(!!change.currentValue) {
-      console.log(change.currentValue)
       this._pkFile = encodeURIComponent(change.currentValue.encrypted);
       this.pkFileURI = this.sanitizer.bypassSecurityTrustUrl(this._pkFilePrefix + this._pkFile);
     }

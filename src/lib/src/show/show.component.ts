@@ -1,4 +1,5 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from '@angular/core';
+import {ScrWavesApiService} from '../..';
 
 @Component({
   selector: 'scr-wallet-show',
@@ -22,15 +23,17 @@ import {Component, Input} from "@angular/core";
     .section { padding: 24px; }
   `]
 })
-export class ScrWalletShowComponent {
+export class ScrWalletShowComponent implements OnInit {
 
-  @Input() address: string;
+  @Input() publicKey: string;
 
-  constructor() {
+  public address: string;
+
+  constructor(private _wavesApiProvider: ScrWavesApiService) {
 
   }
 
-
-
-
+  ngOnInit(): void {
+    this.address = this._wavesApiProvider.wavesApi.tools.getAddressFromPublicKey(this.publicKey);
+  }
 }
