@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {ScrWavesApiService} from 'wallet';
-import {IWavesAPI} from 'waves-api';
+import {IWavesAPI} from '@waves/waves-api';
 
 @Component({
   selector: '',

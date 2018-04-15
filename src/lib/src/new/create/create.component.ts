@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from "@angular/core";
-import {IWavesAPI} from 'waves-api'
+import {IWavesAPI} from '@waves/waves-api'
 import {ScrWallet} from '../../core/wallet.model';
 import {ScrWavesApiService} from '../../core/waves-provider.service';
 

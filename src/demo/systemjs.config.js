@@ -51,7 +51,7 @@
       'underscore': 'npm:underscore/underscore-min.js',
       'swarm-js': 'npm:swarm-js/src/swarm.js',
       'ethjs-unit': 'npm:ethjs-unit/dist/ethjs-unit.min.js',
-      'waves-api': 'npm:waves-api/dist/waves-api.js',
+      '@waves/waves-api': 'npm:@waves/waves-api/dist/waves-api.js',
       'tslib': 'npm:tslib/tslib.js',
 
       '@bindoc/loading': 'npm:@bindoc/loading/bundles/loading.umd.min.js',

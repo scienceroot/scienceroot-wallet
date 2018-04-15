@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {MatSnackBar} from "@angular/material";
-import {IWavesAPI} from 'waves-api';
+import {IWavesAPI} from '@waves/waves-api';
 import {ScrWallet} from '../../../core/wallet.model';
 import {ScrWavesApiService} from '../../../core/waves-provider.service';
 

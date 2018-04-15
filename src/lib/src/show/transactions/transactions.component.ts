@@ -2,7 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {interval} from 'rxjs/observable/interval';
 import {startWith} from 'rxjs/operators';
 import {Subscription} from 'rxjs/Subscription';
-import {IWavesAPI} from 'waves-api';
+import {IWavesAPI} from '@waves/waves-api';
 import {ScrWavesApiService} from '../../core/core.module';
 
 @Component({

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {create, TESTNET_CONFIG} from 'waves-api'
+import {create} from '@waves/waves-api'
 import {SCR_WAVES_CONFIG} from '../../index';
 
 @Injectable()
