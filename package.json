@@ -70,7 +70,6 @@
     "zone.js": "0.8.x"
   },
   "dependencies": {
-    "waves-api": "0.24.x",
-    "web3": "0.x.x"
+    "waves-api": "0.24.x"
   }
 }
