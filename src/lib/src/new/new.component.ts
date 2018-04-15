@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
-import {ScrWallet} from '../..';
+import {ScrWallet} from '../core/wallet.model';
 import {ScrWalletService} from "../core/wallet.service";
 
 @Component({

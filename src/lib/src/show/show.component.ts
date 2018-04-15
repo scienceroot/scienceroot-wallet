@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ScrWavesApiService} from '../..';
+import {ScrWavesApiService} from '../core/waves-provider.service';
 
 @Component({
   selector: 'scr-wallet-show',
