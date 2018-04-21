@@ -97,16 +97,17 @@
   version "1.0.10"
   resolved "https://npm.scienceroots.com/@scienceroot%2fsecurity/-/security-1.0.10.tgz#6546d23acb359c9a29917673ee0725bdd883b290"
 
-"@waves/waves-api@0.26.x":
-  version "0.26.0"
-  resolved "https://npm.scienceroots.com/@waves%2fwaves-api/-/waves-api-0.26.0.tgz#36fb05b84b10340ffc014b5797d5d06fff1c02da"
+"@waves/waves-api@0.28.x":
+  version "0.28.0"
+  resolved "https://npm.scienceroots.com/@waves%2fwaves-api/-/waves-api-0.28.0.tgz#0947e3a591cb5ad3c6d20de602509367fb2c127c"
   dependencies:
-    bignumber.js "^4.1.0"
-    crypto-js "^3.1.9-1"
-    node-fetch "^1.7.3"
+    bignumber.js "4.1.0"
+    crypto-js "3.1.9-1"
+    node-fetch "1.7.3"
     parse-json-bignumber "0.0.2"
-    ts-api-validator "^2.1.0"
-    ts-utils "^6.0.0"
+    ts-api-validator "2.1.2"
+    ts-utils "6.0.1"
+    tslib "^1.9.0"
 
 abbrev@1:
   version "1.1.1"
@@ -258,7 +259,7 @@ better-assert@~1.0.0:
   dependencies:
     callsite "1.0.0"
 
-bignumber.js@^4.1.0:
+bignumber.js@4.1.0:
   version "4.1.0"
   resolved "https://npm.scienceroots.com/bignumber.js/-/bignumber.js-4.1.0.tgz#db6f14067c140bd46624815a7916c92d9b6c24b1"
 
@@ -507,7 +508,7 @@ cryptiles@2.x.x:
   dependencies:
     boom "2.x.x"
 
-crypto-js@^3.1.9-1:
+crypto-js@3.1.9-1:
   version "3.1.9-1"
   resolved "https://npm.scienceroots.com/crypto-js/-/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
 
@@ -1290,7 +1291,7 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://npm.scienceroots.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-node-fetch@^1.7.3:
+node-fetch@1.7.3:
   version "1.7.3"
   resolved "https://npm.scienceroots.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
   dependencies:
@@ -2009,19 +2010,19 @@ tree-kill@^1.1.0:
   version "1.2.0"
   resolved "https://npm.scienceroots.com/tree-kill/-/tree-kill-1.2.0.tgz#5846786237b4239014f05db156b643212d4c6f36"
 
-ts-api-validator@^2.1.0:
-  version "2.1.1"
-  resolved "https://npm.scienceroots.com/ts-api-validator/-/ts-api-validator-2.1.1.tgz#41ad5e6678f897c1a6ee4c4c5700ae4ff7f90425"
+ts-api-validator@2.1.2:
+  version "2.1.2"
+  resolved "https://npm.scienceroots.com/ts-api-validator/-/ts-api-validator-2.1.2.tgz#b661abbc8e83af61cbb1b17943bd8f281459bbd5"
   dependencies:
     ts-utils "^4.0.2"
+
+ts-utils@6.0.1:
+  version "6.0.1"
+  resolved "https://npm.scienceroots.com/ts-utils/-/ts-utils-6.0.1.tgz#e35299ae8f76535cca1046850760903dd6da39ac"
 
 ts-utils@^4.0.2:
   version "4.5.0"
   resolved "https://npm.scienceroots.com/ts-utils/-/ts-utils-4.5.0.tgz#be3cfde0037b29f251fd1fc4aa212294d83c7656"
-
-ts-utils@^6.0.0:
-  version "6.0.0"
-  resolved "https://npm.scienceroots.com/ts-utils/-/ts-utils-6.0.0.tgz#6f73b5a35a010030fbc381974d3e70f047033247"
 
 tsickle@^0.27.2:
   version "0.27.2"
@@ -2032,7 +2033,7 @@ tsickle@^0.27.2:
     source-map "^0.6.0"
     source-map-support "^0.5.0"
 
-tslib@^1.7.1:
+tslib@^1.7.1, tslib@^1.9.0:
   version "1.9.0"
   resolved "https://npm.scienceroots.com/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
 
