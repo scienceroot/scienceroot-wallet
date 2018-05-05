@@ -41,9 +41,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/flex-layout@2.0.0-beta.12":
-  version "2.0.0-beta.12"
-  resolved "https://npm.scienceroots.com/@angular%2fflex-layout/-/flex-layout-2.0.0-beta.12.tgz#80970dc1d60f27fa41537659926f3238f759f343"
+"@angular/flex-layout@5.0.0-beta.14":
+  version "5.0.0-beta.14"
+  resolved "https://npm.scienceroots.com/@angular%2fflex-layout/-/flex-layout-5.0.0-beta.14.tgz#300e1cba2ef1a70f43fe7ea68ea78267cb4241e4"
   dependencies:
     tslib "^1.7.1"
 
@@ -96,6 +96,14 @@
 "@scienceroot/security@1.x.x":
   version "1.0.10"
   resolved "https://npm.scienceroots.com/@scienceroot%2fsecurity/-/security-1.0.10.tgz#6546d23acb359c9a29917673ee0725bdd883b290"
+
+"@types/estree@0.0.38":
+  version "0.0.38"
+  resolved "https://npm.scienceroots.com/@types%2festree/-/estree-0.0.38.tgz#c1be40aa933723c608820a99a373a16d215a1ca2"
+
+"@types/node@*":
+  version "10.0.4"
+  resolved "https://npm.scienceroots.com/@types%2fnode/-/node-10.0.4.tgz#130598ee56e9a1210a53f557d64935571f05390d"
 
 "@waves/waves-api@0.28.x":
   version "0.28.0"
@@ -1683,9 +1691,12 @@ rollup-pluginutils@^2.0.1:
     estree-walker "^0.3.0"
     micromatch "^2.3.11"
 
-rollup@0.55.x:
-  version "0.55.5"
-  resolved "https://npm.scienceroots.com/rollup/-/rollup-0.55.5.tgz#2f88c300f7cf24b5ec2dca8a6aba73b04e087e93"
+rollup@0.58.x:
+  version "0.58.2"
+  resolved "https://npm.scienceroots.com/rollup/-/rollup-0.58.2.tgz#2feddea8c0c022f3e74b35c48e3c21b3433803ce"
+  dependencies:
+    "@types/estree" "0.0.38"
+    "@types/node" "*"
 
 rx@2.3.24:
   version "2.3.24"
