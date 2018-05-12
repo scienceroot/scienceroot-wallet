@@ -80,6 +80,7 @@ import {SCR_WALLET_STORAGE_KEY} from '../../../core/wallet.const';
 export class ScrWalletPrivateLoadComponent {
 
   @Output() onKeyfileLoad: EventEmitter<any> = new EventEmitter();
+  @Output() onNewWallet: EventEmitter<any> = new EventEmitter();
 
   public keystoreFileChange(event: any) {
     const file = event.target.files[0];

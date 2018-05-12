@@ -38,24 +38,39 @@ import {ScrWavesApiService} from '../../core/waves-provider.service';
             {{ passwordError }}
           </span>
       </div>
-      <mat-form-field>
-        <input  matInput=""
-                placeholder="Password"
-                [(ngModel)]="password"
-                type="password"
-                minlength="6"
-                required />
-      </mat-form-field>
-    </div>
-    <div class="actions">
-      <button mat-raised-button=""
-              (click)="createWallet()"
-              color="accent">
-        Create wallet
-      </button>
+      <form (submit)="createWallet()">
+        <div  fxLayout="row"
+              fxLayoutGap="24px">
+          <div fxFlex="">
+            <mat-form-field>
+              <input  matInput=""
+                      placeholder="Password"
+                      [(ngModel)]="password"
+                      type="password"
+                      name="password"
+                      autocomplete="new-password"
+                      minlength="6"
+                      required />
+            </mat-form-field>
+          </div>
+          <div fxFlex="80px">
+            <button mat-raised-button=""
+                    type="submit"
+                    color="accent">
+              Create
+            </button>  
+          </div>
+        </div>
+      </form>
     </div>
   `,
-  styles: [``]
+  styles: [`
+    mat-form-field, mat-form-field input { width: 100%; }
+    
+    .wallet--form {
+      padding: 24px;
+    }
+  `]
 })
 export class ScrWalletNewCreateComponent {
 

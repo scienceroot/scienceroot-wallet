@@ -20,7 +20,7 @@ import {SCR_WALLET_STORAGE_KEY} from '../../core/wallet.const';
       <div fxFlex="">
         <div *ngIf="!wallet">
           <div *ngIf="!walletIsStored">
-            <scr-wallet-private-load (onKeyfileLoad)="walletIsStored = true;">
+            <scr-wallet-private-load  (onKeyfileLoad)="walletIsStored = true;">
             </scr-wallet-private-load>
           </div>
           <div *ngIf="walletIsStored">

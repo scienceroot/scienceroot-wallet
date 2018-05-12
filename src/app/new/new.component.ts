@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+import {ScrActiveUserService} from '@scienceroot/user';
 
 @Component({
   selector: 'app-wallet-new',
@@ -17,14 +18,18 @@ import {Router} from '@angular/router';
 export class ScrWalletNewDemoComponent {
 
 
-  public userId = 'a867c686-25cd-4686-81bf-471b7d1a4ff8';
+  public userId;
 
-  constructor(private router: Router) {
+  constructor(
+    private _router: Router,
+    private _activeUserService: ScrActiveUserService
+  ) {
+    this.userId = this._activeUserService.get().uid;
   }
 
   public onWalletCreationFinished() {
     console.log('finished wallet creation');
 
-    this.router.navigate(['/wallet']);
+    this._router.navigate(['/wallet']);
   }
 }

@@ -31,6 +31,7 @@
     "@angular/router": "5.x.x",
     "@scienceroot/design": "1.x.x",
     "@scienceroot/security": "1.x.x",
+    "@scienceroot/user": "^2.1.0",
     "@waves/waves-api": "0.28.x",
     "core-js": "2.5.x",
     "rxjs": "5.5.x",

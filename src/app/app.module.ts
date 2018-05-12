@@ -1,16 +1,17 @@
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {ScrWalletStoreConfig} from '@scienceroot/wallet';
+import {ScrUserDetailsLinkModule, ScrUserStoreConfigModel} from '@scienceroot/user';
 import {ScrWalletNewDemoModule} from './new/new.module';
 import {ScrWalletDemoModule} from './wallet/wallet.module';
 
 
 import {AppComponent} from './app.component';
 import {
-  ScrAuthenticationLoginComponent,
   ScrAuthenticationModule,
   ScrAuthenticationStoreConfig,
   ScrSecureHttpClientModule
@@ -27,10 +28,11 @@ import {
     BrowserModule,
     RouterModule.forRoot([
       { path: '', pathMatch: 'full', redirectTo: 'wallet' },
-      { path: 'login', component: ScrAuthenticationLoginComponent }
     ]),
+    FlexLayoutModule,
     ScrAuthenticationModule,
     ScrSecureHttpClientModule,
+    ScrUserDetailsLinkModule,
     ScrWalletDemoModule,
     ScrWalletNewDemoModule
   ],
@@ -42,11 +44,17 @@ export class AppModule {
   constructor() {
     const host: string = 'https://api.scienceroots.com';
 
-    new ScrAuthenticationStoreConfig(
-      'scrAuthToken',
+    new ScrUserStoreConfigModel(
+      `${host}/users`,
       `${host}/register`,
-      `${host}/login`,
-      `${host}/token`,
+      `${host}/industries/`,
+      `${host}/interests/`,
+      `${host}/search/languages/`
+    ).save();
+
+    new ScrAuthenticationStoreConfig(
+      `${host}`,
+      'scrAuthToken'
     ).save();
 
     new ScrWalletStoreConfig(
