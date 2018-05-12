@@ -5,46 +5,113 @@ import {ScrWallet} from '../../core/wallet.model';
 @Component({
   selector: 'scr-wallet-new-store',
   template: `
-    <span class="mat-title">Save your wallet data as file</span>
-    <div>
-      <p class="mat-subheading-1">
-        Do not lose it! It cannot be recovered if you lose it.
-      </p>
-      <p class="mat-subheading-1">
-        Do not share it!
-      </p>
+    <span class="mat-title">Save backup</span>
+    <div  fxLayout="row"
+          fxLayoutGap="24px">
+      <div  fxFlex="24px"
+            fxFlexAlign="center">
+        <mat-icon>warning</mat-icon>
+      </div>
+      <div fxFlex="">
+        <p class="mat-body-1">
+          Do not lose it! It cannot be recovered if you lose it.
+        </p>
+        <p class="mat-body-1">
+          Do not share it!
+        </p>
+      </div>
     </div>
     <div class="wallet-info">
-      <div fxLayout="row">
-        <div fxFlex="75px">
+      <div  fxLayout="row"
+            fxLayoutGap="24px">
+        <div  fxFlex="75px"
+              fxFlexAlign="center">
           <span class="mat-caption">Address</span>
         </div>
         <div fxFlex="">
-          <span class="mat-body-1">{{wallet.address}}</span>
+          <mat-form-field>
+            <input  matInput=""
+                    #addressField
+                    type="text"
+                    [value]="wallet.address"
+                    readonly />
+          </mat-form-field>
+        </div>
+        <div fxFlex="24px">
+          <button mat-icon-button=""
+                  [ngxClipboard]="addressField"
+                  color="accent">
+            <mat-icon>file_copy</mat-icon>
+          </button>
         </div>
       </div>
-      <div fxLayout="row">
-        <div fxFlex="75px">
+      <div  fxLayout="row"
+            fxLayoutGap="24px">
+        <div  fxFlex="75px"
+              fxFlexAlign="center">
           <span class="mat-caption">Public key</span>
         </div>
         <div fxFlex="">
-          <span class="mat-body-1">{{wallet.seed.keyPair.publicKey}}</span>
+          <mat-form-field>
+            <input  matInput=""
+                    #publicKeyField
+                    type="text"
+                    [value]="wallet.seed.keyPair.publicKey"
+                    readonly />
+          </mat-form-field>
+        </div>
+        <div fxFlex="24px">
+          <button mat-icon-button=""
+                  [ngxClipboard]="publicKeyField"
+                  color="accent">
+            <mat-icon>file_copy</mat-icon>
+          </button>
         </div>
       </div>
-      <div fxLayout="row">
-        <div fxFlex="75px">
+      <div  fxLayout="row"
+            fxLayoutGap="24px">
+        <div  fxFlex="75px"
+              fxFlexAlign="center">
           <span class="mat-caption">Private key</span>
         </div>
         <div fxFlex="">
-          <span class="mat-body-1">{{wallet.seed.keyPair.privateKey}}</span>
+          <mat-form-field>
+            <input  matInput=""
+                    #privateKeyField
+                    type="text"
+                    [value]="wallet.seed.keyPair.privateKey"
+                    readonly />
+          </mat-form-field>
+        </div>
+        <div fxFlex="24px">
+          <button mat-icon-button=""
+                  [ngxClipboard]="privateKeyField"
+                  color="accent">
+            <mat-icon>file_copy</mat-icon>
+          </button>
         </div>
       </div>
-      <div fxLayout="row">
-        <div fxFlex="75px">
+      <div  fxLayout="row"
+            fxLayoutGap="24px">
+        <div  fxFlex="75px"
+              fxFlexAlign="center">
           <span class="mat-caption">Phrase</span>
         </div>
         <div fxFlex="">
-          <span class="mat-body-1">{{wallet.seed.phrase}}</span>
+          <mat-form-field>
+            <input  matInput=""
+                    #seedField
+                    type="text"
+                    [value]="wallet.seed.phrase"
+                    readonly />
+          </mat-form-field>
+        </div>
+        <div fxFlex="24px">
+          <button mat-icon-button=""
+                  [ngxClipboard]="seedField"
+                  color="accent">
+            <mat-icon>file_copy</mat-icon>
+          </button>
         </div>
       </div>
     </div>
@@ -69,6 +136,10 @@ import {ScrWallet} from '../../core/wallet.model';
   `,
   styles: [`
     .wallet-info { padding: 24px 12px; }
+
+    .wallet-info > div { margin: 12px 0; }
+    
+    mat-form-field, mat-form-field input { width: 100%; }
   `]
 })
 export class ScrWalletNewStoreComponent implements OnChanges {

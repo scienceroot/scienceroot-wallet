@@ -4423,6 +4423,16 @@ ng-packagr@^2.4.4:
     uglify-js "^3.3.20"
     update-notifier "^2.3.0"
 
+ngx-clipboard@^11.0.0:
+  version "11.0.0"
+  resolved "https://npm.scienceroots.com/ngx-clipboard/-/ngx-clipboard-11.0.0.tgz#13dbffbc1932031af3fb54ffa0c0255bfcd57b75"
+  dependencies:
+    ngx-window-token "0.0.4"
+
+ngx-window-token@0.0.4:
+  version "0.0.4"
+  resolved "https://npm.scienceroots.com/ngx-window-token/-/ngx-window-token-0.0.4.tgz#47e7aaa465411c4ab5f7ba17601bc593c956c736"
+
 no-case@^2.2.0:
   version "2.3.2"
   resolved "https://npm.scienceroots.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"

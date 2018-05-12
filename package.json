@@ -34,6 +34,7 @@
     "@scienceroot/user": "^2.1.0",
     "@waves/waves-api": "0.28.x",
     "core-js": "2.5.x",
+    "ngx-clipboard": "11.x.x",
     "rxjs": "5.5.x",
     "zone.js": "0.8.x"
   },

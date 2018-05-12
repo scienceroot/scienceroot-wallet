@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {ScrActiveUserService} from '@scienceroot/user';
+import {ScrWallet} from '@scienceroot/wallet';
 
 @Component({
   selector: 'app-wallet-new',
   template: `
     <div>
-      <scr-wallet-new [userId]="userId"
-                      (onWalletCreationFinished)="onWalletCreationFinished()">
+      <scr-wallet-new (walletCreate)="onWalletCreationFinished()">
       </scr-wallet-new>
     </div>
   `,
@@ -27,8 +27,8 @@ export class ScrWalletNewDemoComponent {
     this.userId = this._activeUserService.get().uid;
   }
 
-  public onWalletCreationFinished() {
-    console.log('finished wallet creation');
+  public onWalletCreationFinished(wallet: ScrWallet) {
+    console.log('finished wallet creation', wallet);
 
     this._router.navigate(['/wallet']);
   }

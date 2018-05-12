@@ -29,6 +29,7 @@
     "@scienceroot/security": "1.x.x",
     "@waves/waves-api": "0.28.x",
     "core-js": "2.x.x",
+    "ngx-clipboard": "11.x.x",
     "rxjs": "5.x.x",
     "zone.js": "0.x.x"
   },
