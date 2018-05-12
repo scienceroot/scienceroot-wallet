@@ -21,6 +21,9 @@ set -e  # terminates on error
 npm run build:lib
 set +e
 
+git add wallet-lib/package.json
+git commit -m "bumped version"
+
 # STEP PUBLISH
 echo "Publish version:                  $NEXT_VERSION"
 git push --follow-tags
