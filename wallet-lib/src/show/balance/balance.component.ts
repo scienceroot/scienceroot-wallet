@@ -43,7 +43,6 @@ export class ScrWalletShowBalanceComponent implements OnInit, OnDestroy {
 
   public balance: Promise<number>;
 
-  private _checkSub: Subscription;
   private _wavesApi: any;
 
   constructor(private _wavesProvider: ScrWavesApiService) {
@@ -52,13 +51,11 @@ export class ScrWalletShowBalanceComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const checkInterval = interval(10000);
-    this._checkSub = checkInterval.pipe(startWith(0))
+
+    checkInterval
+      .pipe(startWith(0))
       .subscribe(() => this._getBalance());
 
-  }
-
-  ngOnDestroy(): void {
-    this._checkSub.unsubscribe();
   }
 
   private _getBalance() {
