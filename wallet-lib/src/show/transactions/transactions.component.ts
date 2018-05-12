@@ -1,7 +1,6 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {interval} from 'rxjs/observable/interval';
 import {startWith} from 'rxjs/operators';
-import {Subscription} from 'rxjs/Subscription';
 import {IWavesAPI} from '@waves/waves-api';
 import {ScrWavesApiService} from '../../core/core.module';
 
@@ -102,7 +101,7 @@ import {ScrWavesApiService} from '../../core/core.module';
     }
   `]
 })
-export class ScrWalletShowTransactionsComponent implements OnInit, OnDestroy {
+export class ScrWalletShowTransactionsComponent implements OnInit {
 
   @Input() address: string;
 
@@ -110,7 +109,6 @@ export class ScrWalletShowTransactionsComponent implements OnInit, OnDestroy {
   public received: any[] = [];
 
   private _wavesApi: IWavesAPI;
-  private _checkSub: Subscription;
 
   constructor(private _wavesApiService: ScrWavesApiService) {
     this._wavesApi = this._wavesApiService.wavesApi;
@@ -119,16 +117,14 @@ export class ScrWalletShowTransactionsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (!!this.address) {
       const checkInterval = interval(10000);
-      this._checkSub = checkInterval.pipe(startWith(0))
+
+      checkInterval
+        .pipe(startWith(0))
         .subscribe(() => {
           this._wavesApi.API.Node.v1.transactions.getList(this.address)
             .then((txList) => this._processTransactions(txList));
         });
     }
-  }
-
-  ngOnDestroy(): void {
-    this._checkSub.unsubscribe();
   }
 
   private _processTransactions(txList: any[]) {
