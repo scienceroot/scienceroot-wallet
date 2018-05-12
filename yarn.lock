@@ -4423,7 +4423,7 @@ ng-packagr@^2.4.4:
     uglify-js "^3.3.20"
     update-notifier "^2.3.0"
 
-ngx-clipboard@^11.0.0:
+ngx-clipboard@11.x.x:
   version "11.0.0"
   resolved "https://npm.scienceroots.com/ngx-clipboard/-/ngx-clipboard-11.0.0.tgz#13dbffbc1932031af3fb54ffa0c0255bfcd57b75"
   dependencies:

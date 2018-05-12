@@ -128,7 +128,7 @@ import {ScrWallet} from '../../core/wallet.model';
       </div>
       <div fxFlex="100px">
         <button mat-raised-button=""
-                (click)="onWalletCreationFinished.emit(true)">
+                (click)="onWalletCreationFinished.emit(wallet)">
           Continue
         </button>
       </div>
