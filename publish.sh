@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURRENT_VERSION=$(cat package.json \
+CURRENT_VERSION=$(cat wallet-lib/package.json \
   | grep version \
   | head -1 \
   | awk -F: '{ print $2 }' \
@@ -12,15 +12,17 @@ read NEXT_VERSION
 
 # STEP NPM
 echo "Setting package.json version:     $NEXT_VERSION"
+cd wallet-lib
 npm version ${NEXT_VERSION}
+cd ..
 
 # STEP BUILD
 set -e  # terminates on error
-npm run build
+npm run build:lib
 set +e
 
 # STEP PUBLISH
 echo "Publish version:                  $NEXT_VERSION"
 git push --follow-tags
 
-npm publish dist
+npm publish dist/wallet-lib --registry https://npm.scienceroots.com
