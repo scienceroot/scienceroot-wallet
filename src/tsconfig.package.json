@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "module": "es2015",
+    "types": [],
+    "paths": {
+      "@scienceroot/wallet": [ "../dist/wallet-lib" ]
+    }
+  },
+  "angularCompilerOptions": {
+    "paths": {
+      "@scienceroot/wallet": [ "../dist/wallet-lib" ]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

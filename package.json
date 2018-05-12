@@ -1,44 +1,21 @@
 {
-  "name": "@scienceroot/wallet",
-  "version": "2.0.4",
-  "description": "",
-  "main": "./wallet.umd.js",
-  "module": "./wallet.es5.js",
-  "es2015": "./wallet.js",
-  "typings": "./wallet.d.ts",
-  "author": "Sven Seemann",
-  "bugs": {
-    "url": "",
-    "email": "sven.seemann@scienceroot.de"
-  },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "engines": {
-    "node": ">= 6.9.0",
-    "npm": ">= 3.0.0"
-  },
+  "name": "wallet",
+  "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
-    "clean": "rimraf out-tsc dist",
-    "prebuild": "npm run clean",
-    "build": "node build.js",
-    "build-demo": "tsc -p src/demo/",
-    "build-demo:watch": "tsc -p src/demo/ -w",
-    "serve": "lite-server -c=bs-config.json",
-    "prestart": "npm run build-demo",
-    "start": "concurrently \"npm run build-demo:watch\" \"npm run serve\""
+    "ng": "ng",
+    "start": "ng serve --app dev",
+    "build": "ng build --app package --prod",
+    "build:app": "cpr dist/wallet-lib src/@scienceroot/wallet && ng build --app package && rimraf src/@scienceroot",
+    "build:app:aot": "cpr dist/wallet-lib src/@scienceroot/wallet && ng build --app package --prod && rimraf src/@scienceroot",
+    "build:lib": "rimraf dist && ng-packagr -p wallet-lib/package.json",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "packagr": "ng-packagr -p ng-package.json"
   },
-  "peerDependencies": {
-    "@angular/animations": "5.x.x",
-    "@angular/core": "5.x.x",
-    "@angular/flex-layout": "5.0.0-beta.14",
-    "@angular/forms": "5.x.x",
-    "@angular/http": "5.x.x",
-    "@scienceroot/design": "1.x.x",
-    "@scienceroot/security": "1.x.x"
-  },
-  "devDependencies": {
+  "private": true,
+  "dependencies": {
     "@angular/animations": "5.x.x",
     "@angular/cdk": "5.x.x",
     "@angular/common": "5.x.x",
@@ -54,22 +31,31 @@
     "@angular/router": "5.x.x",
     "@scienceroot/design": "1.x.x",
     "@scienceroot/security": "1.x.x",
-    "camelcase": "4.1.x",
-    "concurrently": "3.5.x",
+    "@waves/waves-api": "0.28.x",
     "core-js": "2.5.x",
-    "glob": "7.1.x",
-    "lite-server": "2.3.x",
-    "replace": "0.3.x",
-    "rimraf": "2.6.x",
-    "rollup": "0.58.x",
-    "rollup-plugin-sourcemaps": "0.4.x",
-    "rollup-plugin-uglify": "3.0.x",
     "rxjs": "5.5.x",
-    "systemjs": "0.20.x",
-    "typescript": "2.5.x",
     "zone.js": "0.8.x"
   },
-  "dependencies": {
-    "@waves/waves-api": "0.28.x"
+  "devDependencies": {
+    "@angular/cli": "1.7.x",
+    "@angular/compiler-cli": "5.x.x",
+    "@angular/language-service": "5.x.x",
+    "@types/jasmine": "2.8.x",
+    "@types/jasminewd2": "2.0.x",
+    "@types/node": "6.0.x",
+    "codelyzer": "4.x.x",
+    "cpr": "^3.0.1",
+    "jasmine-core": "2.8.x",
+    "jasmine-spec-reporter": "4.2.x",
+    "karma": "2.0.x",
+    "karma-chrome-launcher": "2.2.x",
+    "karma-coverage-istanbul-reporter": "1.x.x",
+    "karma-jasmine": "1.1.x",
+    "karma-jasmine-html-reporter": "0.x.x",
+    "ng-packagr": "^2.4.4",
+    "protractor": "5.1.x",
+    "ts-node": "4.1.x",
+    "tslint": "5.9.x",
+    "typescript": "2.6.x"
   }
 }

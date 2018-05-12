@@ -1,0 +1,36 @@
+{
+  "name": "@scienceroot/wallet",
+  "version": "2.0.4",
+  "ngPackage": {
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../dist/wallet-lib",
+    "workingDirectory": "../.ng_build",
+    "lib": {
+      "entryFile": "public_api.ts"
+    }
+  },
+  "publishConfig": {
+    "registry": "https://npm.bindoc-team.de"
+  },
+  "peerDependencies": {
+    "@angular/animations": "5.x.x",
+    "@angular/common": "5.x.x",
+    "@angular/compiler": "5.x.x",
+    "@angular/core": "5.x.x",
+    "@angular/forms": "5.x.x",
+    "@angular/http": "5.x.x",
+    "@angular/platform-browser": "5.x.x",
+    "@angular/platform-browser-dynamic": "5.x.x",
+    "@angular/router": "5.x.x",
+    "@angular/material": "5.x.x",
+    "@angular/cdk": "5.x.x",
+    "@angular/flex-layout": "5.0.0-beta.14",
+    "@scienceroot/design": "1.x.x",
+    "@scienceroot/security": "1.x.x",
+    "@waves/waves-api": "0.28.x",
+    "core-js": "2.x.x",
+    "rxjs": "5.x.x",
+    "zone.js": "0.x.x"
+  },
+  "dependencies": {}
+}
