@@ -10,7 +10,7 @@
     }
   },
   "publishConfig": {
-    "registry": "https://npm.bindoc-team.de"
+    "registry": "https://npm.sciencroots.com"
   },
   "peerDependencies": {
     "@angular/animations": "5.x.x",
