@@ -1,8 +1,7 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ScrWavesApiService} from '../../core/waves-provider.service';
 import {interval} from 'rxjs/observable/interval';
 import {startWith} from 'rxjs/operators';
-import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'scr-wallet-show-balance',
@@ -37,7 +36,7 @@ import {Subscription} from 'rxjs/Subscription';
   
   `]
 })
-export class ScrWalletShowBalanceComponent implements OnInit, OnDestroy {
+export class ScrWalletShowBalanceComponent implements OnInit {
 
   @Input() address: string;
 
