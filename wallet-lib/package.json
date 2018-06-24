@@ -27,7 +27,7 @@
     "@angular/flex-layout": "5.0.0-beta.14",
     "@scienceroot/design": "1.x.x",
     "@scienceroot/security": "1.x.x",
-    "@waves/waves-api": "0.28.x",
+    "@waves/waves-api": "1.1.x",
     "core-js": "2.x.x",
     "ngx-clipboard": "11.x.x",
     "rxjs": "5.x.x",

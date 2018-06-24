@@ -268,17 +268,25 @@
   version "0.0.30"
   resolved "https://npm.scienceroots.com/@types%2fstrip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
-"@waves/waves-api@0.28.x":
-  version "0.28.0"
-  resolved "https://npm.scienceroots.com/@waves%2fwaves-api/-/waves-api-0.28.0.tgz#0947e3a591cb5ad3c6d20de602509367fb2c127c"
+"@waves/waves-api@1.1.x":
+  version "1.1.0"
+  resolved "https://npm.scienceroots.com/@waves%2fwaves-api/-/waves-api-1.1.0.tgz#2407fc5829fd59925035e2bc7db06f31ba49cd0d"
   dependencies:
-    bignumber.js "4.1.0"
+    "@waves/waves-signature-generator" "^0.10.1"
+    bignumber.js "7.0.1"
     crypto-js "3.1.9-1"
     node-fetch "1.7.3"
     parse-json-bignumber "0.0.2"
     ts-api-validator "2.1.2"
     ts-utils "6.0.1"
-    tslib "^1.9.0"
+
+"@waves/waves-signature-generator@^0.10.1":
+  version "0.10.1"
+  resolved "https://npm.scienceroots.com/@waves%2fwaves-signature-generator/-/waves-signature-generator-0.10.1.tgz#116ceb82279206cfdcf5fd3c5a309efab70e37f7"
+  dependencies:
+    base64-js "1.3.0"
+    bignumber.js "7.2.1"
+    crypto-js "3.1.9-1"
 
 abbrev@1:
   version "1.1.1"
@@ -713,7 +721,7 @@ base64-arraybuffer@0.1.5:
   version "0.1.5"
   resolved "https://npm.scienceroots.com/base64-arraybuffer/-/base64-arraybuffer-0.1.5.tgz#73926771923b5a19747ad666aa5cd4bf9c6e9ce8"
 
-base64-js@^1.0.2:
+base64-js@1.3.0, base64-js@^1.0.2:
   version "1.3.0"
   resolved "https://npm.scienceroots.com/base64-js/-/base64-js-1.3.0.tgz#cab1e6118f051095e58b5281aea8c1cd22bfc0e3"
 
@@ -753,9 +761,13 @@ big.js@^3.1.3:
   version "3.2.0"
   resolved "https://npm.scienceroots.com/big.js/-/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
 
-bignumber.js@4.1.0:
-  version "4.1.0"
-  resolved "https://npm.scienceroots.com/bignumber.js/-/bignumber.js-4.1.0.tgz#db6f14067c140bd46624815a7916c92d9b6c24b1"
+bignumber.js@7.0.1:
+  version "7.0.1"
+  resolved "https://npm.scienceroots.com/bignumber.js/-/bignumber.js-7.0.1.tgz#8d2ff74fb2e7a78cbfc3a57bd63cd6106bf8903a"
+
+bignumber.js@7.2.1:
+  version "7.2.1"
+  resolved "https://npm.scienceroots.com/bignumber.js/-/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
 
 binary-extensions@^1.0.0:
   version "1.11.0"
@@ -6752,7 +6764,7 @@ tsickle@^0.27.2:
     source-map "^0.6.0"
     source-map-support "^0.5.0"
 
-tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1:
   version "1.9.0"
   resolved "https://npm.scienceroots.com/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
 
