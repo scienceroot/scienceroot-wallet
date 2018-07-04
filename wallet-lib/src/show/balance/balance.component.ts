@@ -58,7 +58,7 @@ export class ScrWalletShowBalanceComponent implements OnInit {
   }
 
   private _getBalance() {
-    this.balance = this._wavesApi.API.Node.v1.addresses.balance(this.address)
+    this.balance = this._wavesApi.API.Node.addresses.balance(this.address)
       .then((res: any) => res.balance);
   }
 }

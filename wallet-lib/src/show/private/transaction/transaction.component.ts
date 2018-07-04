@@ -84,35 +84,34 @@ export class ScrWalletTransactionComponent {
   }
 
   public sendTransaction() {
-    if (!this.amount) {
-      this.errorMessage = 'Please enter an amount to send.';
+      if (!this.amount) {
+        this.errorMessage = 'Please enter an amount to send.';
 
-      return;
+        return;
+      }
+
+      if (!this.targetAddress) {
+        this.errorMessage = 'Please enter a valid target address.';
+
+        return;
+      }
+
+      const transferData = {
+        recipient: this.targetAddress,
+        assetId: 'WAVES',
+        amount: this.amount,
+        feeAssetId: 'WAVES',
+        fee: 100000,
+        attachment: '',
+        timestamp: Date.now()
+      };
+
+      this.transactionReq = (this._wavesApi.API.Node.transactions as any).broadcast('transfer', transferData, this.wallet.seed.keyPair);
+
+      this.transactionReq
+        .then(() => this._onSuccess())
+        .catch((error: any) => this._onError(error));
     }
-
-    if (!this.targetAddress) {
-      this.errorMessage = 'Please enter a valid target address.';
-
-      return;
-    }
-
-    const transferData = {
-      recipient: this.targetAddress,
-      assetId: 'WAVES',
-      amount: this.amount,
-      feeAssetId: 'WAVES',
-      fee: 100000,
-      attachment: '',
-      timestamp: Date.now()
-    };
-
-    this.transactionReq = this._wavesApi.API.Node.v1.assets
-      .transfer(transferData, this.wallet.seed.keyPair);
-
-    this.transactionReq
-      .then(() => this._onSuccess())
-      .catch((error: any) => this._onError(error));
-  }
 
   private _onSuccess() {
     this.transactionReq = null;

@@ -71,12 +71,13 @@ export class ScrWalletPrivateDecryptComponent {
         const seedPhrase = this._wavesApi.Seed.decryptSeedPhrase(walletRaw.encrypted, this.password);
         const seed = this._wavesApi.Seed.fromExistingPhrase(seedPhrase);
         const wallet = new ScrWallet(seed, this.password);
-
+        console.log(wallet)
         this.onDecryptWallet.emit(wallet);
       } catch (e) {
         console.log(e);
         this.openError = 'Unable to restore wallet. Please check your password and try again.';
       }
+
     } else {
       this.openError = 'No wallet locally stored.';
     }

@@ -121,7 +121,7 @@ export class ScrWalletShowTransactionsComponent implements OnInit {
       checkInterval
         .pipe(startWith(0))
         .subscribe(() => {
-          this._wavesApi.API.Node.v1.transactions.getList(this.address)
+          this._wavesApi.API.Node.transactions.getList(this.address)
             .then((txList) => this._processTransactions(txList));
         });
     }
@@ -132,7 +132,7 @@ export class ScrWalletShowTransactionsComponent implements OnInit {
     this.sent = [];
 
     txList.forEach((tx: any) => {
-      const recipientSelf: string = `address:${this.address}`;
+      const recipientSelf: string = this.address;
 
       if (tx.recipient === recipientSelf) {
         this.received.push(tx);

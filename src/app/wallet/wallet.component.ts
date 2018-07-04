@@ -6,7 +6,7 @@ import {IWavesAPI} from '@waves/waves-api';
   selector: 'app-wallet-demo',
   template: `
     <div>
-      <scr-wallet-show [publicKey]="'DBMD5MEasKPXAu2sYGX6jxYoxyaaBQDyyznxX84mrS33'">
+      <scr-wallet-show [publicKey]="'F1j2q8nJitLp5nk8QiJVbSD6UBSTe3AUashtmgUvKaz3'">
       </scr-wallet-show>
     </div>
   `,
