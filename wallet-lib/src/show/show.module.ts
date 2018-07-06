@@ -10,6 +10,9 @@ import {ScrWalletPrivateModule} from './private/private.module';
 import {ScrWalletShowTransactionsModule} from './transactions/transactions.module';
 
 export * from './show.component';
+export * from './balance/balance.module';
+export * from './transactions/transactions.module';
+export * from './private/private.module';
 
 @NgModule({
   imports: [
