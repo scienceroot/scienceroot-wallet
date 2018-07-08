@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {IWavesAPI} from '@waves/waves-api';
 import {ScrWavesApiService} from '../../core/waves-provider.service';
 import {interval} from 'rxjs/observable/interval';
 import {startWith} from 'rxjs/operators';
@@ -20,14 +21,12 @@ import {startWith} from 'rxjs/operators';
       </div>
       <div fxLayout="row"
            fxLayoutGap="24px">
-            <span fxFlex="130px"
-                  class="mat-caption">
-              Current balance
-            </span>
-        <span fxFlex=""
-              class="mat-subheading-2">
-              {{ balance | async | number:'1.0-10' }} Waves
-            </span>
+        <div fxFlex="130px">
+          <span class="mat-caption">Current balance</span>
+        </div>
+        <div fxFlex="">
+          <span class="mat-subheading-2">{{ balance | async | number:'1.0-10' }} Waves</span>  
+        </div>
       </div>
     </div>
   `,
@@ -41,7 +40,7 @@ export class ScrWalletShowBalanceComponent implements OnInit {
 
   public balance: Promise<number>;
 
-  private _wavesApi: any;
+  private _wavesApi: IWavesAPI;
 
   constructor(private _wavesProvider: ScrWavesApiService) {
     this._wavesApi = this._wavesProvider.wavesApi;
@@ -57,7 +56,7 @@ export class ScrWalletShowBalanceComponent implements OnInit {
   }
 
   private _getBalance() {
-    this.balance = this._wavesApi.API.Node.addresses.balance(this.address)
+    this.balance = this._wavesApi.API.Node.v1.addresses.balance(this.address)
       .then((res: any) => res.balance);
   }
 }

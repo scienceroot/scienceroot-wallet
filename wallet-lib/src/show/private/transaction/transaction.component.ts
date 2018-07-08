@@ -106,7 +106,9 @@ export class ScrWalletTransactionComponent {
         timestamp: Date.now()
       };
 
-      this.transactionReq = (this._wavesApi.API.Node.transactions as any).broadcast('transfer', transferData, this.wallet.seed.keyPair);
+      this.transactionReq = this._wavesApi.API.Node.v1.assets.transfer(transferData, this.wallet.seed.keyPair);
+
+      // this.transactionReq = (this._wavesApi.API.Node.transfer as any).broadcast('transfer', transferData, this.wallet.seed.keyPair);
 
       this.transactionReq
         .then(() => this._onSuccess())

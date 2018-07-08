@@ -4,7 +4,7 @@ import {ScrWavesApiService} from '../core/waves-provider.service';
 @Component({
   selector: 'scr-wallet-show',
   template: `
-    <div>
+    <div *ngIf="!!address">
       <div>
         <span class="mat-display-1">Your wallet</span>
       </div>
@@ -40,6 +40,11 @@ export class ScrWalletShowComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.address = this._wavesApiProvider.wavesApi.tools.getAddressFromPublicKey(this.publicKey);
+    console.log(this._wavesApiProvider.wavesApi)
+    console.log(this.address)
+    console.log(this.publicKey)
+
   }
 }
