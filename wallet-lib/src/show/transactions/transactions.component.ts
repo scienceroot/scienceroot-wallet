@@ -6,8 +6,7 @@ import {ScrWavesApiService} from '../../core/core.module';
 
 @Component({
   selector: 'scr-wallet-transactions',
-  template: `
-    <span class="mat-title">Your transactions</span>
+  template: `    
     <div class="transaction-list">
       <div  fxLayout="row"
             fxLayoutGap="24px">

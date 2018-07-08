@@ -3,14 +3,18 @@ import {SCR_WALLET_STORAGE_KEY} from './wallet.const';
 export class ScrWallet {
 
   private _encrypted: any;
+  private _password: string;
   private readonly _address: string;
 
   constructor(
     private _seed: any,
-    private _password?: string
+    password?: string
   ) {
     this._address = this._seed.address;
-    this._store();
+
+    if (!!password) {
+      this.password = password;
+    }
   }
 
   public getPublicKey(): string {
@@ -32,6 +36,7 @@ export class ScrWallet {
   set password(value: string) {
     this._password = value;
     this._encrypted = this._seed.encrypt(this._password);
+    this._store();
   }
 
   private _store() {

@@ -7,7 +7,6 @@ import {startWith} from 'rxjs/operators';
   selector: 'scr-wallet-show-balance',
   template: `
     <div>
-      <span class="mat-title">Your wallet</span>
       <div fxLayout="row"
            fxLayoutGap="24px">
             <span fxFlex="130px"

@@ -65,10 +65,10 @@ export class ScrWalletPrivateDecryptComponent {
     if (!!stored) {
       this.openError = null;
 
-      const walletRaw = JSON.parse(stored);
+      const walletData = JSON.parse(stored);
 
       try {
-        const seedPhrase = this._wavesApi.Seed.decryptSeedPhrase(walletRaw.encrypted, this.password);
+        const seedPhrase = this._wavesApi.Seed.decryptSeedPhrase(walletData.encrypted, this.password);
         const seed = this._wavesApi.Seed.fromExistingPhrase(seedPhrase);
         const wallet = new ScrWallet(seed, this.password);
         console.log(wallet)

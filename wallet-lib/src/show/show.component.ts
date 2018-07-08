@@ -5,11 +5,17 @@ import {ScrWavesApiService} from '../core/waves-provider.service';
   selector: 'scr-wallet-show',
   template: `
     <div>
+      <div>
+        <span class="mat-display-1">Your wallet</span>
+      </div>
       <div class="section">
         <scr-wallet-show-balance [address]="address">
         </scr-wallet-show-balance>
       </div>
       <div class="section">
+        <div>
+          <span class="mat-title">Transactions</span>
+        </div>
         <scr-wallet-transactions [address]="address">
         </scr-wallet-transactions>
       </div>

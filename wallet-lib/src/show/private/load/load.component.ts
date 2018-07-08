@@ -88,7 +88,11 @@ export class ScrWalletPrivateLoadComponent {
 
     fileReader.onload = (e: any) => {
       if (!!e.target.result) {
-        localStorage.setItem(SCR_WALLET_STORAGE_KEY, e.target.result);
+        const walletData = {
+          encrypted: e.target.result
+        };
+
+        localStorage.setItem(SCR_WALLET_STORAGE_KEY, JSON.stringify(walletData));
         this.onKeyfileLoad.emit(true);
       }
     };
