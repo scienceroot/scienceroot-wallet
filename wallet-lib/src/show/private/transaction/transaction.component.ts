@@ -103,7 +103,8 @@ export class ScrWalletTransactionComponent {
         feeAssetId: 'WAVES',
         fee: 100000,
         attachment: '',
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        version: 1
       };
 
       this.transactionReq = this._wavesApi.API.Node.v1.assets.transfer(transferData, this.wallet.seed.keyPair);

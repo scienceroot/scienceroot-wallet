@@ -14,8 +14,7 @@ import { Component } from '@angular/core';
         <div  fxLayout="row"
               fxLayoutAlign="end center">
           <div fxFlex="150px">
-            <scr-user-details-link>
-            </scr-user-details-link>
+            
           </div>
         </div>
       </div>
