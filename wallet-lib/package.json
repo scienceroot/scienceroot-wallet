@@ -1,6 +1,6 @@
 {
   "name": "@scienceroot/wallet",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
     "dest": "../dist/wallet-lib",
