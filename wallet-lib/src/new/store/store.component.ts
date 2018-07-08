@@ -5,167 +5,115 @@ import {ScrWallet} from '../../core/wallet.model';
 @Component({
   selector: 'scr-wallet-new-store',
   template: `
-    <span class="mat-title">Save backup</span>
-    <div  fxLayout="row"
-          fxLayoutGap="24px">
-      <div  fxFlex="24px"
-            fxFlexAlign="center">
-        <mat-icon>warning</mat-icon>
+    <span class="mat-title">Save encrypted wallet</span>
+    <ng-container *ngIf="!fileReady">
+      <p class="mat-body-1">
+        This password encrypts your wallets data.
+      </p>
+      <div>
+          <span *ngIf="!!passwordError"
+                class="scr-warn-text">
+            {{ passwordError }}
+          </span>
       </div>
-      <div fxFlex="">
-        <p class="mat-body-1">
-          Do not lose it! It cannot be recovered if you lose it.
-        </p>
-        <p class="mat-body-1">
-          Do not share it!
-        </p>
-      </div>
-    </div>
-    <div class="wallet-info">
-      <div  fxLayout="row"
-            fxLayoutGap="24px">
-        <div  fxFlex="75px"
-              fxFlexAlign="center">
-          <span class="mat-caption">Address</span>
-        </div>
+      <div fxLayout="row"
+           fxLayoutGap="24px">
         <div fxFlex="">
           <mat-form-field>
             <input  matInput=""
-                    #addressField
-                    type="text"
-                    [value]="wallet.address"
-                    readonly />
+                    placeholder="Password"
+                    [(ngModel)]="password"
+                    type="password"
+                    name="password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required />
           </mat-form-field>
         </div>
-        <div fxFlex="24px">
-          <button mat-icon-button=""
-                  [ngxClipboard]="addressField"
-                  color="accent">
-            <mat-icon>file_copy</mat-icon>
+        <div fxFlex="100px">
+          <button mat-raised-button=""
+                  color="accent"
+                  (click)="encrypt()">
+            <span>Encrypt</span>
           </button>
         </div>
       </div>
-      <div  fxLayout="row"
-            fxLayoutGap="24px">
-        <div  fxFlex="75px"
-              fxFlexAlign="center">
-          <span class="mat-caption">Public key</span>
-        </div>
-        <div fxFlex="">
-          <mat-form-field>
-            <input  matInput=""
-                    #publicKeyField
-                    type="text"
-                    [value]="wallet.seed.keyPair.publicKey"
-                    readonly />
-          </mat-form-field>
-        </div>
-        <div fxFlex="24px">
-          <button mat-icon-button=""
-                  [ngxClipboard]="publicKeyField"
-                  color="accent">
-            <mat-icon>file_copy</mat-icon>
-          </button>
+    </ng-container>
+    <ng-container *ngIf="fileReady">
+      <div fxLayout="row" 
+           fxLayoutAlign="center">
+        <div fxFlex="100px">
+          <a  mat-raised-button=""
+              color="accent"
+              [href]="pkFileURI"
+              download="scr_wallet_encrypted.txt">
+            Download
+          </a>
         </div>
       </div>
-      <div  fxLayout="row"
-            fxLayoutGap="24px">
-        <div  fxFlex="75px"
-              fxFlexAlign="center">
-          <span class="mat-caption">Private key</span>
-        </div>
-        <div fxFlex="">
-          <mat-form-field>
-            <input  matInput=""
-                    #privateKeyField
-                    type="text"
-                    [value]="wallet.seed.keyPair.privateKey"
-                    readonly />
-          </mat-form-field>
-        </div>
-        <div fxFlex="24px">
-          <button mat-icon-button=""
-                  [ngxClipboard]="privateKeyField"
-                  color="accent">
-            <mat-icon>file_copy</mat-icon>
-          </button>
-        </div>
-      </div>
-      <div  fxLayout="row"
-            fxLayoutGap="24px">
-        <div  fxFlex="75px"
-              fxFlexAlign="center">
-          <span class="mat-caption">Phrase</span>
-        </div>
-        <div fxFlex="">
-          <mat-form-field>
-            <input  matInput=""
-                    #seedField
-                    type="text"
-                    [value]="wallet.seed.phrase"
-                    readonly />
-          </mat-form-field>
-        </div>
-        <div fxFlex="24px">
-          <button mat-icon-button=""
-                  [ngxClipboard]="seedField"
-                  color="accent">
-            <mat-icon>file_copy</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
+    </ng-container>
     <div  class="wallet--store"
           fxLayout="row"
+          fxLayoutAlign="end"
           fxLayoutGap="24px">
       <div fxFlex="100px">
-        <a  mat-raised-button=""
-            color="accent"
-            [href]="pkFileURI"
-            download="scr_wallet_encrypted.txt">
-          Download
-        </a>
-      </div>
-      <div fxFlex="100px">
         <button mat-raised-button=""
-                (click)="onWalletCreationFinished.emit(wallet)">
-          Continue
+                color="accent"
+                (click)="continueClick.emit(wallet)">
+          Finish
         </button>
       </div>
     </div>
   `,
   styles: [`
-    .wallet-info { padding: 24px 12px; }
-
-    .wallet-info > div { margin: 12px 0; }
     
-    mat-form-field, mat-form-field input { width: 100%; }
   `]
 })
 export class ScrWalletNewStoreComponent implements OnChanges {
 
   @Input() wallet: ScrWallet;
 
-  @Output() onWalletCreationFinished: EventEmitter<any> = new EventEmitter();
+  @Output() continueClick: EventEmitter<ScrWallet> = new EventEmitter();
 
   public pkFileURI: SafeUrl;
 
+  public password: string;
+  public passwordError: string;
+
+  public fileReady: boolean = false;
   private _pkFile: string;
   private _pkFilePrefix: string = 'data:text/plain;charset=UTF-8,';
 
   constructor(private sanitizer: DomSanitizer) {
+
   }
 
   ngOnChanges(changes: any): void {
-    if (changes.wallet) {
-      this.onWalletChange(changes.wallet);
+
+  }
+
+  public encrypt() {
+    if (this._passwordValid()) {
+      this.wallet.password = this.password;
+      this._pkFile = encodeURIComponent(this.wallet.encrypted);
+      this.pkFileURI = this.sanitizer.bypassSecurityTrustUrl(this._pkFilePrefix + this._pkFile);
+      this.fileReady = true;
     }
   }
 
-  private onWalletChange(change: SimpleChange) {
-    if (!!change.currentValue) {
-      this._pkFile = encodeURIComponent(change.currentValue.encrypted);
-      this.pkFileURI = this.sanitizer.bypassSecurityTrustUrl(this._pkFilePrefix + this._pkFile);
+  private _passwordValid(): boolean {
+    let valid: boolean;
+
+    if (!this.password) {
+      this.passwordError = 'Password required.';
+      valid = false;
+    } else if (this.password.length < 6) {
+      this.passwordError = 'Password needs at least 6 characters.';
+      valid = false;
+    } else {
+      valid = true;
     }
+
+    return valid;
   }
 }
